@@ -5,6 +5,6 @@ const {
     getAllClientsCont
 } = require('../controllers/client');
 
-router.get('/todos', getAllClientsCont);
+router.post('/todos', getAllClientsCont);
 
 module.exports = router;

@@ -1,39 +1,35 @@
 const sql = require('mssql');
-require('dotenv').config();
+//require('dotenv').config();
 
-const dbConfig = {
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    server: process.env.DB_SERVER,
-    database: process.env.DB_DATABASE,
-    pool: {
-        max: 10, // Máximo de conexiones en el pool
-        min: 0,  // Mínimo de conexiones
-        idleTimeoutMillis: 30000 // Tiempo antes de cerrar conexión inactiva
-    },
-    options: {
-        encrypt: true,
-        trustServerCertificate: true
+const dbConfig = (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE) => {
+    return {
+        user: DB_USER,
+        password: DB_PASS,
+        server: DB_SERVER,  
+        database: DB_DATABASE,
+        pool: {
+            max: 10,  // Máximo de conexiones en el pool
+            min: 0,  // Mínimo de conexiones
+            idleTimeoutMillis: 1000 // Tiempo antes de cerrar conexión inactiva
+        },
+        options: {
+            encrypt: true,
+            trustServerCertificate: true
+        }
+    };
+};
+
+
+const getConnection = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE) => {
+    let pool;
+    try {        
+        const config = dbConfig(DB_USER, DB_PASS, DB_SERVER, DB_DATABASE);
+        pool = await sql.connect(config);
+        return pool; 
+
+    } catch (err) {
+        throw err;
     }
 };
 
-let poolPromise;
-
-const getConnection = async () => {
-    if (!poolPromise) {
-        poolPromise = new sql.ConnectionPool(dbConfig)
-            .connect()
-            .then(pool => {
-                console.log("Conectado a SQL Server");
-                return pool;
-            })
-            .catch(err => {
-                console.error("Error en la conexión a SQL Server:", err);
-                poolPromise = null; // Resetear para volver a intentar conexión
-                throw err;
-            });
-    }
-    return poolPromise;
-};
-
-module.exports = { sql, getConnection };
+module.exports = { sql, getConnection, dbConfig };

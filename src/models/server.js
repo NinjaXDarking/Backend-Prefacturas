@@ -1,4 +1,4 @@
-require("dotenv").config();
+//require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 //const dbConnect = require("./src/config/db");
@@ -6,7 +6,7 @@ const cors = require("cors");
 class server{
   constructor(){
     this.app = express();
-    this.port = process.env.PORT || 5000;;
+    this.port =  5000;;
     this.product = '/api/productos';
     this.client = '/api/clientes';
 
@@ -30,6 +30,7 @@ class server{
     this.app.use(this.product, require("../routers/Product"));
     this.app.use(this.client, require("../routers/client"));
   }
+
 
   listen(){
     this.app.listen(this.port, () => {

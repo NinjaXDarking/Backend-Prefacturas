@@ -1,12 +1,17 @@
-const { sql, getConnection } = require('../configuration/db');
+const connection = require('../configuration/db');
 
-const getAllProducts = async () => {
+const getAllProducts = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE) => {
+    let pool;
     try {
-        const pool = await getConnection();
+        pool = await connection.getConnection(DB_USER, DB_PASS, DB_SERVER, DB_DATABASE);
         const result = await pool.request().query('Exec dbo.App_BusquedaProductos');
         return result.recordset;
     } catch (error) {
-        throw new Error(error);
+        throw new Error(error);addEventListener
+    } finally {
+        if (pool) {
+            pool.close(); // Cierra la conexión si se estableció
+        }
     }
 }
 
