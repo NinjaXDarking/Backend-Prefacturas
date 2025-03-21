@@ -9,6 +9,7 @@ class server{
     this.port =  5000;;
     this.product = '/api/productos';
     this.client = '/api/clientes';
+    this.user = '/api/usuarios';
 
     this.server = null; // Definir la propiedad en el constructor
 
@@ -29,6 +30,7 @@ class server{
   routes(){
     this.app.use(this.product, require("../routers/Product"));
     this.app.use(this.client, require("../routers/client"));
+    this.app.use(this.user, require("../routers/user"));
   }
 
 
