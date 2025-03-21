@@ -6,7 +6,7 @@ const cors = require("cors");
 class server{
   constructor(){
     this.app = express();
-    this.port =  5000;;
+    this.port =  8080;
     this.product = '/api/productos';
     this.client = '/api/clientes';
     this.user = '/api/usuarios';
