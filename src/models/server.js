@@ -28,7 +28,7 @@ class server{
   }
 
   routes(){
-    this.app.use(this.product, require("../routers/Product"));
+    this.app.use(this.product, require("../routers/product"));
     this.app.use(this.client, require("../routers/client"));
     this.app.use(this.user, require("../routers/user"));
   }
