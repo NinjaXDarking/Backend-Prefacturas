@@ -10,7 +10,7 @@ class server{
     this.product = '/api/productos';
     this.client = '/api/clientes';
     this.user = '/api/usuarios';
-    this.user = '/api/prefacturas';
+    this.prefacture = '/api/prefacturas';
 
     this.server = null; // Definir la propiedad en el constructor
 
@@ -32,7 +32,7 @@ class server{
     this.app.use(this.product, require("../routers/product"));
     this.app.use(this.client, require("../routers/client"));
     this.app.use(this.user, require("../routers/user"));
-    this.app.use(this.user, require("../routers/prefacture"));
+    this.app.use(this.prefacture, require("../routers/prefacture"));
   }
 
 
