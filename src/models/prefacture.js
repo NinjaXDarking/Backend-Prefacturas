@@ -32,18 +32,6 @@ const insertPrefactures = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE, CodCl
             .input('ListaProductos', productTable)  // Pasar el TVP como parámetro
             .execute('APP_InsertPrefactura');
         
-        // const result = {
-        //     success: true,
-        //     message: "Datos obtenidos correctamente",
-        //     CodCliente: CodCliente,
-        //     NombreCliente: NombreCliente,
-        //     Subtotal: Subtotal,
-        //     Iva: Iva,
-        //     Total: Total,
-        //     ListProduct: ListProduct
-        // };
-
-        console.log('Prefactura creada exitosamente:', result);
         return { success: true, message: 'Prefactura creada exitosamente', data: result.recordset };
 
     } catch (error) {

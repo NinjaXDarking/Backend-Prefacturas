@@ -17,7 +17,6 @@ const insertClientCont = async (req, res) => {
         const result = await client.insertClient( USER, PASS, SERVER, DB, TYPEI, CEDULA, NAME, BUSINESSNAME, EMAIL, PHONENUMBER1);
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
         res.status(500);
         res.send(error.message);
     }

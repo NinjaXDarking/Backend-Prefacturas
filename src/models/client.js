@@ -3,8 +3,6 @@ const connection = require('../configuration/db');
 const getAllClients = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE) => {
     let pool;
     try {
-        console.log(DB_DATABASE);
-
         pool = await connection.getConnection(DB_USER, DB_PASS, DB_SERVER, DB_DATABASE);
         const result = await pool.request().query('Exec dbo.App_BusquedaClientes');
         return result.recordset;
