@@ -22,17 +22,6 @@ const insertClient = async ( DB_USER, DB_PASS, DB_SERVER, DB_DATABASE, TYPEI, CE
     const fechaActual = new Date();
 
     try {
-        console.log("Inserting client");
-        console.log(DB_USER);
-        console.log(DB_PASS);
-        console.log(DB_SERVER);
-        console.log(DB_DATABASE);
-        console.log(TYPEI);
-        console.log(CEDULA);
-        console.log(NAME);
-        console.log(BUSINESSNAME);
-        console.log(EMAIL);
-        console.log(PHONENUMBER1);
         pool = await connection.getConnection(DB_USER, DB_PASS, DB_SERVER, DB_DATABASE);
         const result = await pool.request()
         .input('TipoI', connection.sql.VarChar, TYPEI)
