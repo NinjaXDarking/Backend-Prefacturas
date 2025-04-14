@@ -1,7 +1,7 @@
 const sql = require('mssql');
 const connection = require('../configuration/db');
 
-const insertPrefactures = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE, CodCliente, NombreCliente, Subtotal, Iva, Total, ListProduct ) => {
+const insertPrefactures = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE, IdUsuario, CodCliente, NombreCliente, Subtotal, Iva, Total, ListProduct ) => {
     let pool;
     try {
         pool = await connection.getConnection(DB_USER, DB_PASS, DB_SERVER, DB_DATABASE);
@@ -24,6 +24,7 @@ const insertPrefactures = async (DB_USER, DB_PASS, DB_SERVER, DB_DATABASE, CodCl
         });
         
         const result = await pool.request()
+            .input('IdUsuario', sql.Int, parseInt(IdUsuario))
             .input('CodCliente', sql.Int, parseInt(CodCliente))
             .input('NombreCliente', sql.VarChar(250), NombreCliente)
             .input('SubTotal', sql.Float, parseFloat(Subtotal))
